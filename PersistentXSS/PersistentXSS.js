@@ -4,18 +4,18 @@ var fs = require('fs');
 var posts = [{'content': 'first post', 'author' : 'Bob'}, {'content': 'second post', 'author' : 'Jack'}, {'content':'third post', 'author' : 'John'}];
 
 app.get('/', function (req, res) {
-    var html = '<html><body>';
+    var html = '<html id=\'htmlId\'><body id=\'bodyId\'>';
     html += '<h1>Posts</h1><br/>';
     for (var post in posts) {
-        html += '<hr><h2>' + posts[post]['author'] + ':</h2>';
+        html += '<hr/><h2>' + posts[post]['author'] + ':</h2>';
         html += '<h3 id=\"content-' + posts[post]['author'] + '\">' + posts[post]['content'] + '</h3><br/><br/>';
     }
-    html += '<hr>';
-    html += '<form action=\'post\' type=\'GET\'>';
-    html += '<input type=\'text\' placeholder=\'Name...\' name=\'author\'>';
+    html += '<hr/>';
+    html += '<div id=\'divId\'><form action=\'post\' type=\'GET\'>';
+    html += '<input type=\'text\' placeholder=\'Name...\' name=\'author\'/>';
     html += '<input type=\'text\' placeholder=\'What are you thinking...\' name=\'post_content\'/>';
-    html += '<input type=\'submit\'>';
-    html += '</form>';
+    html += '<input type=\'submit\'/>';
+    html += '</form></div>';
     html += '</body></html>';
     res.send(html);
 });
@@ -25,4 +25,5 @@ app.get('/post', function (req, res) {
     res.redirect('/');
 });
 
+console.log('Server started on 2000');
 app.listen(2000);
