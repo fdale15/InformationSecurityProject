@@ -10,4 +10,5 @@ app.get('/search', function (req, res) {
     res.send(req.query.query);
 });
 
-app.listen(2000);
+console.log('Started on port 4444');
+app.listen(4444);

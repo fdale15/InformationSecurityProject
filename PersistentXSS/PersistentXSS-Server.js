@@ -1,14 +1,28 @@
 var app = require('express')();
 var fs = require('fs');
 
-var posts = [{'content': 'first post', 'author' : 'Bob'}, {'content': 'second post', 'author' : 'Jack'}, {'content':'third post', 'author' : 'John'}];
+var posts = [{
+                'content': 'Hey guys, how do you like my new restaurant?',
+                'author' : 'Bob',
+                'id'     : '1'
+            }, 
+            {
+                'content': 'I enjoyed it very much.',
+                'author' : 'Alice',
+                'id'     : '2'
+            }, 
+            {
+                'content': 'The food was excellent.',
+                'author' : 'John',
+                'id'     : '3'
+            }];
 
 app.get('/', function (req, res) {
     var html = '<html id=\'htmlId\'><body id=\'bodyId\'>';
     html += '<h1>Posts</h1><br/>';
     for (var post in posts) {
         html += '<hr/><h2>' + posts[post]['author'] + ':</h2>';
-        html += '<h3 id=\"content-' + posts[post]['author'] + '\">' + posts[post]['content'] + '</h3><br/><br/>';
+        html += '<h3 id=\"content-' + posts[post]['id'] + '\">' + posts[post]['content'] + '</h3><br/><br/>';
     }
     html += '<hr/>';
     html += '<div id=\'divId\'><form action=\'post\' type=\'GET\'>';

